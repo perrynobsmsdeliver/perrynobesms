@@ -1,0 +1,14 @@
+name: Auto Refund Expired Orders
+on:
+  schedule:
+    - cron: '*/10 * * * *'
+  workflow_dispatch:
+
+jobs:
+  refund:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Call refund API
+        run: |
+          curl -s "https://perrynobesms-fjg4-ifxdod08r-perryotp.vercel.app/api/cron/sync-5sim"
+          echo "Refund cron executed"
